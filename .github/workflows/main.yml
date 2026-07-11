@@ -1,0 +1,27 @@
+name: Daily Task
+
+on:
+  schedule:
+    # 每天北京时间 10:35
+    # GitHub 使用 UTC，所以减8小时
+    - cron: '35 2 * * *'
+
+  workflow_dispatch:
+
+
+jobs:
+  user-task:
+
+    runs-on: ubuntu-latest
+
+    environment:
+      name: user
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run task
+        run: |
+          echo "执行任务"
+          date
